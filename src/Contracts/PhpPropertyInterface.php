@@ -2,7 +2,7 @@
 
 namespace Kdabrow\PhpFileModifier\Contracts;
 
-interface PhpPropertyInterface
+interface PhpPropertyInterface extends PhpBaseContentInterface
 {
     
 }
