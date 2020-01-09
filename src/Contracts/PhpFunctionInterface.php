@@ -16,9 +16,9 @@ interface PhpFunctionInterface extends PhpBaseContentInterface
      *
      * @param  string  $name  Name
      *
-     * @return  self
+     * @return  PhpFunctionInterface
      */ 
-    public function setName(string $name) : self;
+    public function setName(string $name) : PhpFunctionInterface;
 
     /**
      * Get arguments
@@ -32,9 +32,9 @@ interface PhpFunctionInterface extends PhpBaseContentInterface
      *
      * @param  string  $arguments  Arguments
      *
-     * @return  self
+     * @return  PhpFunctionInterface
      */ 
-    public function setArguments(string $arguments) : self;
+    public function setArguments(string $arguments) : PhpFunctionInterface;
 
     /**
      * Get return
@@ -48,9 +48,9 @@ interface PhpFunctionInterface extends PhpBaseContentInterface
      *
      * @param  string  $return  Return
      *
-     * @return  self
+     * @return  PhpFunctionInterface
      */ 
-    public function setReturn(string $return) : self;
+    public function setReturn(string $return) : PhpFunctionInterface;
 
     /**
      * Get internal part of method
@@ -64,7 +64,7 @@ interface PhpFunctionInterface extends PhpBaseContentInterface
      *
      * @param  string  $body  Internal part of method
      *
-     * @return  self
+     * @return  PhpFunctionInterface
      */ 
-    public function setBody(string $body) : self;
+    public function setBody(string $body) : PhpFunctionInterface;
 }

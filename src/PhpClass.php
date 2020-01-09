@@ -7,14 +7,37 @@ use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpMethodInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\PhpPropertyInterface;
+use Kdabrow\PhpFileModifier\Factories\ModifierFactory;
+use Kdabrow\PhpFileModifier\Factories\PlaceFactory;
 use Kdabrow\PhpFileModifier\Modifier\ClassPlace;
 use Kdabrow\PhpFileModifier\Modifier\Modifier;
 
 class PhpClass implements PhpFileInterface
 {
-    public function __construct(string $path)
+    /**
+     * @var string
+     */
+    private $path = '';
+    /**
+     * @var PlaceFactory
+     */
+    private $placeFactory = null;
+    /**
+     * @var ModifierFactory
+     */
+    private $modifierFactory = null;
+
+    public function __construct(
+        string $path, 
+        PlaceFactory $placeFactory,
+        ModifierFactory $modifierFactory
+    ) 
     {
         throw new NotImplementedException();
+
+        $this->path = $path;
+        $this->placeFactory = $placeFactory;
+        $this->modifierFactory = $modifierFactory;
     }
     
     public function addUse(string $className) : PhpFileInterface

@@ -5,6 +5,9 @@ namespace Kdabrow\PhpFileModifier\Modifier;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\Modifier\PlaceInterface;
 
+/**
+ * This class shows on which line code shoud modified
+ */
 class ClassPlace implements PlaceInterface
 {
     public function __construct(string $fileContent)
