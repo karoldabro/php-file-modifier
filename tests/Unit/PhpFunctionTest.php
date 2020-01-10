@@ -2,11 +2,23 @@
 
 namespace Kdabrow\PhpFileModifier\Tests\Unit;
 
+use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
 use Kdabrow\PhpFileModifier\PhpFunction;
+use Kdabrow\PhpFileModifier\Stub;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
+use Mockery;
 
 class PhpFunctionTest extends TestCase
 {
+    private $stub;
+    
+    public function setUp() : void
+    {
+        $filesystemFactory = new FileSystemFactory();
+
+        $this->stub = new Stub($filesystemFactory->create());
+    }
+
     public function testObjectIsCreated()
     {
         $function = new PhpFunction('test');
@@ -26,7 +38,7 @@ class PhpFunctionTest extends TestCase
     
 }';
 
-        $this->assertEquals($expected, $function->toString());
+        $this->assertEquals($expected, $this->stub->toString($function));
     }
 
     public function testIfAllTagsAreReplaced()
@@ -42,7 +54,7 @@ class PhpFunctionTest extends TestCase
     return preg_replace(\'/regex/\', $argument1, $argument2);
 }';
 
-        $this->assertEquals($expected, $function->toString());
+        $this->assertEquals($expected, $this->stub->toString($function));
     }
 
     public function providerIfFunctionIsGeneratedWithOnlyName(): array

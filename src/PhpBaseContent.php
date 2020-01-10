@@ -2,26 +2,22 @@
 
 namespace Kdabrow\PhpFileModifier;
 
-use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
-
 class PhpBaseContent
 {
-    protected function getStub(string $path) : string
-    {
-        $fileSystem = new FileSystemFactory();
+    /**
+     * Stub file name
+     *
+     * @var string
+     */
+    protected $stubFileName;
 
-        return $fileSystem
-            ->create()
-            ->read($this->getStubsPath($path));
-    }
-
-    private function getStubsPath(string $stubName): string
+    /**
+     * Get stub file name
+     *
+     * @return  string
+     */ 
+    public function getStubFileName() : string
     {
-        return $stubName;
-    }
-
-    protected function replaceTag(string $string, string $tag, string $value)
-    {
-        return str_replace('['.$tag.']', $value, $string);
+        return $this->stubFileName;
     }
 }

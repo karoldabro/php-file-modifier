@@ -4,5 +4,12 @@ namespace Kdabrow\PhpFileModifier\Contracts;
 
 interface PhpBaseContentInterface
 {
-    public function toString() : string;
+    /**
+     * Get stub file name
+     *
+     * @return  string
+     */ 
+    public function getStubFileName() : string;
+
+    public function getParamsToFillInStub() : array;
 }

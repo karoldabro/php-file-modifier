@@ -14,23 +14,21 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
 
     private $body = '';
 
-    private $stub = 'function.stub';
+    protected $stubFileName = 'function.stub';
 
     public function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    public function toString(): string
+    public function getParamsToFillInStub() : array
     {
-        $string = $this->getStub($this->stub);
-
-        $string = $this->replaceTag($string, 'name', $this->name);
-        $string = $this->replaceTag($string, 'arguments', $this->arguments);
-        $string = $this->replaceTag($string, 'return', $this->return);
-        $string = $this->replaceTag($string, 'body', $this->body);
-
-        return $string;
+        return [
+            'name' => $this->name,
+            'arguments' => $this->arguments,
+            'return' => $this->return,
+            'body' => $this->body,
+        ];
     }
 
     /**
