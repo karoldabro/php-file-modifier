@@ -2,23 +2,11 @@
 
 namespace Kdabrow\PhpFileModifier\Tests\Unit;
 
-use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
 use Kdabrow\PhpFileModifier\PhpFunction;
-use Kdabrow\PhpFileModifier\Stub;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
-use Mockery;
 
 class PhpFunctionTest extends TestCase
 {
-    private $stub;
-    
-    public function setUp() : void
-    {
-        $filesystemFactory = new FileSystemFactory();
-
-        $this->stub = new Stub($filesystemFactory->create());
-    }
-
     public function testObjectIsCreated()
     {
         $function = new PhpFunction('test');
@@ -26,42 +14,34 @@ class PhpFunctionTest extends TestCase
         $this->assertEquals('test', $function->getName());
     }
 
-    /**
-     * @dataProvider providerIfFunctionIsGeneratedWithOnlyName
-     */
-    public function testIfFunctionIsGeneratedWithOnlyName(string $name)
-    {
-        $function = new PhpFunction($name);
-
-        $expected = 'function '.$name.'() 
-{
-    
-}';
-
-        $this->assertEquals($expected, $this->stub->toString($function));
-    }
-
-    public function testIfAllTagsAreReplaced()
+    public function testReturnAddColon()
     {
         $function = new PhpFunction('test');
-        $function->setArguments('string $agrument1, array &$argument2');
-        $function->setBody('return preg_replace(\'/regex/\', $argument1, $argument2);');
-        $function->setReturn('string');
+        $function->setReturn('returnValue');
 
-
-        $expected = 'function test(string $agrument1, array &$argument2) : string
-{
-    return preg_replace(\'/regex/\', $argument1, $argument2);
-}';
-
-        $this->assertEquals($expected, $this->stub->toString($function));
+        $this->assertEquals(': returnValue', $function->getReturn());
     }
 
-    public function providerIfFunctionIsGeneratedWithOnlyName(): array
+    public function testReturnParamsTofillInStub()
     {
-        return [
-            ['test'],
-            ['test2']
-        ];
+        $function = new PhpFunction('test');
+        $function->setReturn('returnValue');
+        $function->setArguments('string argument1, string argument 2');
+        $function->setName('functionName');
+        $function->setBody('echo \'test value to show\'');
+
+        $this->assertEquals([
+            'name' => $function->getName(),
+            'arguments' => $function->getArguments(),
+            'return' => $function->getReturn(),
+            'body' => $function->getBody(),
+        ], $function->getParamsToFillInStub());
+    }
+
+    public function testIfStubFileNameIsCorrect()
+    {
+        $function = new PhpFunction('test');
+
+        $this->assertEquals('function.stub', $function->getStubFileName());
     }
 }
