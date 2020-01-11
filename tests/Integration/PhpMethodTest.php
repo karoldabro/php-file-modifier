@@ -3,11 +3,11 @@
 namespace Kdabrow\PhpFileModifier\Tests\Integration;
 
 use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
-use Kdabrow\PhpFileModifier\PhpFunction;
+use Kdabrow\PhpFileModifier\PhpMethod;
 use Kdabrow\PhpFileModifier\Stub;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
 
-class PhpFunctionTest extends TestCase
+class PhpMethodTest extends TestCase
 {
     private $stub;
     
@@ -23,29 +23,30 @@ class PhpFunctionTest extends TestCase
      */
     public function testIfFunctionIsGeneratedWithOnlyName(string $name)
     {
-        $function = new PhpFunction($name);
+        $method = new PhpMethod($name);
 
-        $expected = 'function '.$name.'() 
+        $expected = 'public function '.$name.'() 
 {
     
 }';
 
-        $this->assertEquals($expected, $this->stub->toString($function));
+        $this->assertEquals($expected, $this->stub->toString($method));
     }
 
     public function testIfAllTagsAreReplaced()
     {
-        $function = new PhpFunction('test');
-        $function->setArguments('string $agrument1, array &$argument2');
-        $function->setBody('return preg_replace(\'/regex/\', $argument1, $argument2);');
-        $function->setReturn('string');
+        $method = new PhpMethod('test');
+        $method->setArguments('string $agrument1, array &$argument2');
+        $method->setBody('return preg_replace(\'/regex/\', $argument1, $argument2);');
+        $method->setReturn('string');
+        $method->setAccess('protected');
 
-        $expected = 'function test(string $agrument1, array &$argument2) : string
+        $expected = 'protected function test(string $agrument1, array &$argument2) : string
 {
     return preg_replace(\'/regex/\', $argument1, $argument2);
 }';
 
-        $this->assertEquals($expected, $this->stub->toString($function));
+        $this->assertEquals($expected, $this->stub->toString($method));
     }
 
     public function providerIfFunctionIsGeneratedWithOnlyName(): array

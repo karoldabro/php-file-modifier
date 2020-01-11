@@ -1,0 +1,4 @@
+[access] function [name]([arguments]) [return]
+{
+    [body]
+}
