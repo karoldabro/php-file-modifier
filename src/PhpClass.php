@@ -29,15 +29,11 @@ class PhpClass implements PhpFileInterface
 
     public function __construct(
         string $path, 
-        PlaceFactory $placeFactory,
-        ModifierFactory $modifierFactory
     ) 
     {
         throw new NotImplementedException();
 
         $this->path = $path;
-        $this->placeFactory = $placeFactory;
-        $this->modifierFactory = $modifierFactory;
     }
     
     public function addUse(string $className) : PhpFileInterface

@@ -18,7 +18,7 @@ class PhpVariableTest extends TestCase
     {
         $variable = new PhpVariable('test');
 
-        $this->assertEquals('', $variable->getValue());
+        $this->assertEquals('\'\'', $variable->getValue());
     }
 
     public function testReturnParamsTofillInStub()

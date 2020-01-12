@@ -4,7 +4,7 @@ namespace Kdabrow\PhpFileModifier\Tests\Unit;
 
 use Mockery;
 use Mockery\LegacyMockInterface;
-use Kdabrow\PhpFileModifier\Stub;
+use Kdabrow\PhpFileModifier\Modifier\Stub;
 use League\Flysystem\FilesystemInterface;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
 use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
