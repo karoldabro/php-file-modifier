@@ -2,6 +2,8 @@
 
 namespace Kdabrow\PhpFileModifier\Modifier;
 
+use League\Flysystem\FilesystemInterface;
+use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\Modifier\PlaceInterface;
 
@@ -10,9 +12,14 @@ use Kdabrow\PhpFileModifier\Contracts\Modifier\PlaceInterface;
  */
 class ClassPlace implements PlaceInterface
 {
-    public function __construct(string $fileContent)
+    /**
+     * @var Finder
+     */
+    private $finder;
+
+    public function __construct(PhpFileInterface $phpFileInterface, FilesystemInterface $filesystemInterface)
     {
-        
+        $this->finder = new Finder($phpFileInterface, $filesystemInterface);
     }
 
     public function onLine(int $lineNumber) : int

@@ -27,9 +27,7 @@ class PhpClass implements PhpFileInterface
      */
     private $modifierFactory = null;
 
-    public function __construct(
-        string $path, 
-    ) 
+    public function __construct(string $path) 
     {
         throw new NotImplementedException();
 
@@ -89,10 +87,8 @@ class PhpClass implements PhpFileInterface
         return $this;
     }
 
-    public function getContent() : string
+    public function getPath() : string
     {
-        throw new NotImplementedException();
-
-        return '';
+        return $this->path;
     }
 }

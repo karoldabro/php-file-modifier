@@ -1,0 +1,65 @@
+<?php
+
+class FooClass
+{
+    /**
+     * Some comment
+     *
+     * @var string
+     */
+    private $someProperty;
+
+    public function __construct(string $someProperty)
+    {
+        $this->someProperty = $someProperty;
+    }
+
+    /**
+     * Some comment
+     *
+     * @return void
+     */
+    public function method1()
+    {
+        $resource = $this->getSomeProperty();
+        $resource->open($this->host, $this->port);
+        $resource->write('some data');
+
+        $response = '';
+        while (($line = $resource->getLine()) !== false) {
+            $response .= $line;
+        }
+
+        $resource->close();
+
+        return $response;
+    }
+
+    // This could be refactored to constructor injection
+    // but for simplicity example we will leave at this
+    public function getSomeProperty()
+    {
+        return $this->someProperty;
+    }
+
+    public function method2() {
+        return $this->someProperty;
+    }
+
+
+    private function method3() { return $this->someProperty; }
+
+
+    protected function method4() 
+    {
+        if () {
+            if () {
+                if () {
+                    while() {
+
+                    }
+                }
+            }
+        }
+    }
+}

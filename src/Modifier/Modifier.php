@@ -10,11 +10,12 @@ class Modifier
 {
     public function __construct(
         PhpFileInterface $phpFileInterface, 
-        PhpBaseContentInterface $phpBaseContentInterface, 
-        int $lineNumber
+        PhpBaseContentInterface $phpBaseContentInterface
     ) {
         throw new NotImplementedException();
     }
 
-    public function insert(int $lineNumber, string $value);
+    public function insert(int $lineNumber);
+
+    public function update(int $startLineNumber);
 }

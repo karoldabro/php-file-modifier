@@ -6,7 +6,7 @@ use Closure;
 
 interface PhpFileInterface
 {
-    public function getContent() : string;
+    public function getPath() : string;
 
     public function addUse(string $className) : PhpFileInterface;
 
