@@ -25,14 +25,6 @@ class FinderTest extends TestCase
     }
 
     /**
-     * - odczytywanie zawartosci
-     * - znajdowanie regexa i zwrtoka numeru linii
-     * - znajdowanie zakonczenia ciała klasy
-     * - znajdowanie zakonczenia ciala metody
-     * - znajdowanie zakonczenia w jednej linii
-     */
-
-    /**
      * @dataProvider providerIfFindingMethodWillReturnCorrectCoordinates
      */
     public function testIfFindingMethodWillReturnCorrectCoordinates($methodName, $startCoordinate, $endCoordinate): void
@@ -53,6 +45,27 @@ class FinderTest extends TestCase
         $this->assertNull($coordinates->getEndline());
     }
 
+    public function testIfFindingMethodWillReturnCoordinatesWithManyBracesInOneLine(): void
+    {
+        $finder = new Finder($this->file, $this->filesystem);
+        $coordinates = $finder->method('many_brances_in_one_line');
+
+        $this->assertEquals(66, $coordinates->getStartLine());
+        $this->assertEquals(70, $coordinates->getEndline());
+    }
+
+    /**
+     * @dataProvider providerIfPropertyWillBeFound
+     */
+    public function testIfPropertyWillBeFound($methodName, $startCoordinate, $endCoordinate): void
+    {
+        $finder = new Finder($this->file, $this->filesystem);
+        $coordinates = $finder->property($methodName);
+
+        $this->assertEquals($startCoordinate, $coordinates->getStartLine());
+        $this->assertEquals($endCoordinate, $coordinates->getEndline());
+    }
+
     public function providerIfFindingMethodWillReturnCorrectCoordinates(): array
     {
         return [
@@ -61,6 +74,21 @@ class FinderTest extends TestCase
             ['method2', 45, 47],
             ['method3', 50, 50],
             ['method4', 53, 64],
+        ];
+    }
+
+    public function providerIfPropertyWillBeFound()
+    {
+        return [
+            ['property1', 72, 72],
+            ['property2', 74, 74],
+            ['property3', 76, 78],
+            ['property4', 80, 82],
+            ['property5', 84, 87],
+            ['property6', 89, 91],
+            ['property7', 93, 99],
+            ['property8', 101, 104],
+            ['property9', 106, 118],
         ];
     }
 }

@@ -62,4 +62,59 @@ class FooClass
             }
         }
     }
+
+    private function many_brances_in_one_line() { 
+        if (1 === $some) { while($some) {echo $elese;}
+        }
+        echo 'end';
+     }
+
+     private $property1 = null;
+
+     public $property2 = 2;
+
+     public $property3 = function ($smth) {
+
+     };
+
+     public $property4 = [
+         'test' => 'test',
+     ];
+
+     public $property5 = 
+     '
+     test
+     ';
+
+     public $property6 = function ($smth) {
+        echo 'test';
+    };
+
+    public $property7 = function ($smth) {
+        if ($smth) {
+            echo 'test';
+        } else {
+            echo 'test2';
+        }
+    };
+
+    public $property8 = 
+    [
+        'test' => 'test',
+    ];
+
+    public $property9 = 
+    [
+        'test' => function ($smth) {
+            if ($smth) {
+                echo 'test';
+            } else {
+                echo 'test2';
+            }
+        },
+        'test2' => [
+            1 => ($mnth ? 'tese' : 1),
+        ]
+    ];
+
 }

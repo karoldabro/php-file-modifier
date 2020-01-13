@@ -2,7 +2,6 @@
 
 namespace Kdabrow\PhpFileModifier\Modifier;
 
-use Closure;
 use Kdabrow\PhpFileModifier\Modifier\Coordinates;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
@@ -42,18 +41,18 @@ class Finder
         return new Coordinates(0, 0);
     }
 
-    public function property(string $pattern) : Coordinates
+    public function property(string $name) : Coordinates
     {
-        throw new NotImplementedException();
+        $stream = $this->getStream();
 
-        return new Coordinates(0, 0);
+        return $this->mayHaveBraces($stream, "/(public|private|protected)( +)\\$".$name."( *)=/");
     }
 
     public function method(string $name) : Coordinates
     {
-        $stream = $this->filesystemInterface->readStream($this->phpFileInterface->getPath());
+        $stream = $this->getStream();
 
-        return $this->beetweenBraces($stream, "/(public|private|protected)( +)function( +)".$name."( *)\(.*\)/");
+        return $this->mustHaveBraces($stream, "/(public|private|protected)( +)function( +)".$name."( *)\(.*\)/");
     }
 
     public function function(string $pattern) : Coordinates
@@ -63,7 +62,7 @@ class Finder
         return new Coordinates(0, 0);
     }
 
-    private function beetweenBraces($stream, string $pattern)
+    private function mustHaveBraces($stream, string $pattern)
     {
         $startLineNumber = null;
         $endLineNumber = null;
@@ -79,11 +78,11 @@ class Finder
                 $startLineNumber = $lineNumber;
             }
             if (!is_null($startLineNumber)) {
-                if (preg_match("/\{/", $content)) {
-                    $countNumberOfOpenBraces++;
+                if ($numberOfMachesStart = preg_match_all("/\{/", $content)) {
+                    $countNumberOfOpenBraces += $numberOfMachesStart;
                 }
-                if (preg_match("/\}/", $content)) {
-                    $countNumberOfCloseBraces++;
+                if ($numberOfMachesEnd = preg_match_all("/\}/", $content)) {
+                    $countNumberOfCloseBraces += $numberOfMachesEnd;
                 }
 
                 if ($countNumberOfOpenBraces > 0 && $countNumberOfOpenBraces == $countNumberOfCloseBraces) {
@@ -94,5 +93,55 @@ class Finder
         }
 
         return new Coordinates($startLineNumber, $endLineNumber);
+    }
+
+    private function mayHaveBraces($stream, string $startPattern, string $endPattern = "/;/", string $opening = "/\{/", string $ending = "/\}/")
+    {
+        $startLineNumber = null;
+        $endLineNumber = null;
+
+        $countNumberOfOpenBraces = 0;
+        $countNumberOfCloseBraces = 0;
+
+        $lineNumber = 0;
+        while (($content = stream_get_line($stream, self::BYTES, PHP_EOL)) !== false) {
+            $lineNumber++;
+            
+            if (preg_match($startPattern, $content)) {
+                $startLineNumber = $lineNumber;
+            }
+            if (!is_null($startLineNumber)) {
+                if ($numberOfMachesStart = preg_match_all($opening, $content)) {
+                    $countNumberOfOpenBraces += $numberOfMachesStart;
+                }
+
+                if ($numberOfMachesEnd = preg_match_all($ending, $content)) {
+                    $countNumberOfCloseBraces += $numberOfMachesEnd;
+                }
+
+                if ($countNumberOfOpenBraces == 0) {
+                    if (preg_match($endPattern, $content)) {
+                        $endLineNumber = $lineNumber;
+                        break;
+                    }
+                }
+
+                if (
+                    $countNumberOfOpenBraces > 0 &&
+                    $countNumberOfOpenBraces == $countNumberOfCloseBraces && 
+                    preg_match($endPattern, $content)
+                ) {
+                    $endLineNumber = $lineNumber;
+                    break;
+                }
+            }
+        }
+
+        return new Coordinates($startLineNumber, $endLineNumber);
+    }
+
+    private function getStream()
+    {
+        return $this->filesystemInterface->readStream($this->phpFileInterface->getPath());
     }
 }
