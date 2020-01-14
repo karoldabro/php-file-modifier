@@ -18,16 +18,16 @@ class PhpClass implements PhpFileInterface
      * @var string
      */
     private $path = '';
-    /**
-     * @var PlaceFactory
-     */
-    private $placeFactory = null;
-    /**
-     * @var ModifierFactory
-     */
-    private $modifierFactory = null;
+    // /**
+    //  * @var PlaceFactory
+    //  */
+    // private $placeFactory = null;
+    // /**
+    //  * @var ModifierFactory
+    //  */
+    // private $modifierFactory = null;
 
-    public function __construct(string $path) 
+    public function __construct(string $path)
     {
         throw new NotImplementedException();
 

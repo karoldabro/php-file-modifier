@@ -9,7 +9,8 @@ class Stub
 {
     private $fileSystem;
     
-    public function __construct(FilesystemInterface $fileSystem) {
+    public function __construct(FilesystemInterface $fileSystem)
+    {
         $this->fileSystem = $fileSystem;
     }
 

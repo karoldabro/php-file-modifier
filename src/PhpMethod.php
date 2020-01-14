@@ -17,7 +17,7 @@ class PhpMethod extends PhpFunction implements PhpMethodInterface
     public function getParamsToFillInStub() : array
     {
         return array_merge(
-            parent::getParamsToFillInStub(), 
+            parent::getParamsToFillInStub(),
             [
                 'access' => $this->getAccess()
             ]
@@ -27,8 +27,8 @@ class PhpMethod extends PhpFunction implements PhpMethodInterface
     /**
      * Get access public|protected|private
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAccess() : string
     {
         return $this->access;
@@ -37,10 +37,10 @@ class PhpMethod extends PhpFunction implements PhpMethodInterface
     /**
      * Set access public|protected|private
      *
-     * @param  string  $access  Access public|protected|private
+     * @param string $access Access public|protected|private
      *
-     * @return  PhpMethodInterface
-     */ 
+     * @return PhpMethodInterface
+     */
     public function setAccess(string $access) : PhpMethodInterface
     {
         $this->access = $access;

@@ -28,8 +28,8 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
     /**
      * Get name
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getName() : string
     {
         return $this->name;
@@ -38,10 +38,10 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
     /**
      * Set name
      *
-     * @param  string  $name  Name
+     * @param string $name Name
      *
-     * @return  PhpVariableInterface
-     */ 
+     * @return PhpVariableInterface
+     */
     public function setName(string $name) : PhpVariableInterface
     {
         $this->name = $name;
@@ -50,11 +50,10 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
     }
 
     /**
-     * 
      * Get value
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getValue() : string
     {
         return $this->value;
@@ -63,10 +62,10 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
     /**
      * Set value
      *
-     * @param  string  $value  Value
+     * @param string $value Value
      *
-     * @return  PhpVariableInterface
-     */ 
+     * @return PhpVariableInterface
+     */
     public function setValue(string $value) : PhpVariableInterface
     {
         $this->value = $value;

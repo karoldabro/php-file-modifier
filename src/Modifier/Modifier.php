@@ -9,13 +9,17 @@ use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
 class Modifier
 {
     public function __construct(
-        PhpFileInterface $phpFileInterface, 
+        PhpFileInterface $phpFileInterface,
         PhpBaseContentInterface $phpBaseContentInterface
     ) {
         throw new NotImplementedException();
     }
 
-    public function insert(int $lineNumber);
+    public function insert(int $lineNumber)
+    {
+    }
 
-    public function update(int $startLineNumber);
+    public function update(int $startLineNumber)
+    {
+    }
 }

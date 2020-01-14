@@ -7,8 +7,8 @@ interface PhpBaseContentInterface
     /**
      * Get stub file name
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getStubFileName() : string;
 
     public function getParamsToFillInStub() : array;

@@ -34,8 +34,8 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Get name
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getName() : string
     {
         return $this->name;
@@ -44,10 +44,10 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Set name
      *
-     * @param  string  $name  Name
+     * @param string $name Name
      *
-     * @return  PhpFunctionInterface
-     */ 
+     * @return PhpFunctionInterface
+     */
     public function setName(string $name) : PhpFunctionInterface
     {
         $this->name = $name;
@@ -58,8 +58,8 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Get arguments
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getArguments() : string
     {
         return $this->arguments;
@@ -68,10 +68,10 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Set arguments
      *
-     * @param  string  $arguments  Arguments
+     * @param string $arguments Arguments
      *
-     * @return  PhpFunctionInterface
-     */ 
+     * @return PhpFunctionInterface
+     */
     public function setArguments(string $arguments) : PhpFunctionInterface
     {
         $this->arguments = $arguments;
@@ -82,8 +82,8 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Get return
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getReturn() : string
     {
         return $this->return;
@@ -92,10 +92,10 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Set return
      *
-     * @param  string  $return  Return
+     * @param string $return Return
      *
-     * @return  PhpFunctionInterface
-     */ 
+     * @return PhpFunctionInterface
+     */
     public function setReturn(string $return) : PhpFunctionInterface
     {
         $this->return = ': '.$return;
@@ -106,8 +106,8 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Get internal part of method
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getBody() : string
     {
         return $this->body;
@@ -116,10 +116,10 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
     /**
      * Set internal part of method
      *
-     * @param  string  $body  Internal part of method
+     * @param string $body Internal part of method
      *
-     * @return  PhpFunctionInterface
-     */ 
+     * @return PhpFunctionInterface
+     */
     public function setBody(string $body) : PhpFunctionInterface
     {
         $this->body = $body;

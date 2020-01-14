@@ -18,7 +18,7 @@ class Coordinates
      */
     private $endline;
 
-    public function __construct(int $startLine = null, int $endline = null) 
+    public function __construct(int $startLine = null, int $endline = null)
     {
         $this->startLine = $startLine;
         $this->endline = $endline;
@@ -27,8 +27,8 @@ class Coordinates
     /**
      * Get line number in file where something starts
      *
-     * @return  int|null
-     */ 
+     * @return int|null
+     */
     public function getStartLine() : ?int
     {
         return $this->startLine;
@@ -37,10 +37,10 @@ class Coordinates
     /**
      * Set line number in file where something starts
      *
-     * @param  int|null  $startLine  Line number in file where something starts
+     * @param int|null $startLine Line number in file where something starts
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setStartLine(?int $startLine)
     {
         $this->startLine = $startLine;
@@ -51,8 +51,8 @@ class Coordinates
     /**
      * Get line number in file where something ends
      *
-     * @return  int|null
-     */ 
+     * @return int|null
+     */
     public function getEndline() : ?int
     {
         return $this->endline;
@@ -61,10 +61,10 @@ class Coordinates
     /**
      * Set line number in file where something ends
      *
-     * @param  int|null  $endline  Line number in file where something ends
+     * @param int|null $endline Line number in file where something ends
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEndline(?int $endline)
     {
         $this->endline = $endline;

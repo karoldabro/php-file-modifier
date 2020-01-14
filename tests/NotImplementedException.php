@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Kdabrow\PhpFileModifier\Tests;
 

@@ -7,16 +7,16 @@ interface PhpMethodInterface extends PhpFunctionInterface
     /**
      * Get access public|protected|private
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAccess() : string;
 
     /**
      * Set access public|protected|private
      *
-     * @param  string  $access  Access public|protected|private
+     * @param string $access Access public|protected|private
      *
-     * @return  PhpMethodInterface
-     */ 
+     * @return PhpMethodInterface
+     */
     public function setAccess(string $access) : PhpMethodInterface;
 }

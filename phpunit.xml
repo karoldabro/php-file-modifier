@@ -22,7 +22,6 @@
     <filter>
 		<whitelist processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">./src</directory>
-			<exclude>./vendor</exclude>
 		</whitelist>
 	</filter>
     <!-- <logging>

@@ -27,6 +27,27 @@ class Finder
         $this->filesystemInterface = $filesystemInterface;
     }
 
+    public function trait(string $name) : Coordinates
+    {
+        throw new NotImplementedException();
+
+        return new Coordinates(0, 0);
+    }
+
+    public function interface(string $name) : Coordinates
+    {
+        throw new NotImplementedException();
+
+        return new Coordinates(0, 0);
+    }
+
+    public function class(string $name) : Coordinates
+    {
+        throw new NotImplementedException();
+
+        return new Coordinates(0, 0);
+    }
+
     public function pattern(string $pattern) : Coordinates
     {
         throw new NotImplementedException();
@@ -34,7 +55,7 @@ class Finder
         return new Coordinates(0, 0);
     }
 
-    public function variable(string $pattern) : Coordinates
+    public function variable(string $name) : Coordinates
     {
         throw new NotImplementedException();
 
@@ -55,14 +76,14 @@ class Finder
         return $this->mustHaveBraces($stream, "/(public|private|protected)( +)function( +)".$name."( *)\(.*\)/");
     }
 
-    public function function(string $pattern) : Coordinates
+    public function function(string $name) : Coordinates
     {
         throw new NotImplementedException();
 
         return new Coordinates(0, 0);
     }
 
-    private function mustHaveBraces($stream, string $pattern)
+    private function mustHaveBraces($stream, string $pattern, string $opening = "/\{/", string $ending = "/\}/")
     {
         $startLineNumber = null;
         $endLineNumber = null;
@@ -78,10 +99,10 @@ class Finder
                 $startLineNumber = $lineNumber;
             }
             if (!is_null($startLineNumber)) {
-                if ($numberOfMachesStart = preg_match_all("/\{/", $content)) {
+                if ($numberOfMachesStart = preg_match_all($opening, $content)) {
                     $countNumberOfOpenBraces += $numberOfMachesStart;
                 }
-                if ($numberOfMachesEnd = preg_match_all("/\}/", $content)) {
+                if ($numberOfMachesEnd = preg_match_all($ending, $content)) {
                     $countNumberOfCloseBraces += $numberOfMachesEnd;
                 }
 
@@ -95,8 +116,13 @@ class Finder
         return new Coordinates($startLineNumber, $endLineNumber);
     }
 
-    private function mayHaveBraces($stream, string $startPattern, string $endPattern = "/;/", string $opening = "/\{/", string $ending = "/\}/")
-    {
+    private function mayHaveBraces(
+        $stream,
+        string $startPattern,
+        string $endPattern = "/;/",
+        string $opening = "/\{/",
+        string $ending = "/\}/"
+    ) {
         $startLineNumber = null;
         $endLineNumber = null;
 
@@ -126,10 +152,9 @@ class Finder
                     }
                 }
 
-                if (
-                    $countNumberOfOpenBraces > 0 &&
-                    $countNumberOfOpenBraces == $countNumberOfCloseBraces && 
-                    preg_match($endPattern, $content)
+                if ($countNumberOfOpenBraces > 0
+                    && $countNumberOfOpenBraces == $countNumberOfCloseBraces
+                    && preg_match($endPattern, $content)
                 ) {
                     $endLineNumber = $lineNumber;
                     break;
