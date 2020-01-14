@@ -11,7 +11,7 @@ pre-commit:
         options: "--fixers=short_array_syntax --diff"
     phpunit:
         enabled:     true
-        random-mode: true
+        random-mode: false
         options:     '<some options>'
         strict-coverage:
              enabled:       true
@@ -39,7 +39,7 @@ pre-push:
     execute:
       phpunit:
         enabled:     true
-        random-mode: true
+        random-mode: false
         options:     '<some options>'
     strict-coverage:
         enabled:       true

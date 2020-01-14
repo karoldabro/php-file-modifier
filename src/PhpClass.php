@@ -3,16 +3,17 @@
 namespace Kdabrow\PhpFileModifier;
 
 use Closure;
+use Kdabrow\PhpFileModifier\Modifier\Modifier;
+use Kdabrow\PhpFileModifier\Modifier\ClassPlace;
+use Kdabrow\PhpFileModifier\Factories\PlaceFactory;
+use Kdabrow\PhpFileModifier\Factories\ModifierFactory;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpMethodInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
+use Kdabrow\PhpFileModifier\Contracts\PhpFunctionInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpPropertyInterface;
-use Kdabrow\PhpFileModifier\Factories\ModifierFactory;
-use Kdabrow\PhpFileModifier\Factories\PlaceFactory;
-use Kdabrow\PhpFileModifier\Modifier\ClassPlace;
-use Kdabrow\PhpFileModifier\Modifier\Modifier;
 
-class PhpClass implements PhpFileInterface
+class PhpClass
 {
     /**
      * @var string
@@ -41,7 +42,7 @@ class PhpClass implements PhpFileInterface
         return $this;
     }
 
-    public function getFunction(string $functionName) : PhpMethodInterface
+    public function getFunction(string $functionName) : PhpFunctionInterface
     {
         throw new NotImplementedException;
 
