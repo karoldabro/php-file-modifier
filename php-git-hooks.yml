@@ -15,7 +15,7 @@ pre-commit:
         options:     '<some options>'
         strict-coverage:
              enabled:       true
-             minimum:       !!float 0
+             minimum:       70.0
         guard-coverage:
              enabled: true
              message: 'WARNING!!, your code coverage is lower.'
