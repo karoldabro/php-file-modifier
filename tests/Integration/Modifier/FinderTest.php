@@ -3,7 +3,7 @@
 namespace Kdabrow\PhpFileModifier\Tests\Integration\Modifier;
 
 use Mockery;
-use Kdabrow\PhpFileModifier\Finders\Finder;
+use Kdabrow\PhpFileModifier\Finders\ClassFinder;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
@@ -29,7 +29,7 @@ class FinderTest extends TestCase
      */
     public function testIfFindingMethodWillReturnCorrectCoordinates($methodName, $startCoordinate, $endCoordinate): void
     {
-        $finder = new Finder($this->file, $this->filesystem);
+        $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->method($methodName);
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
@@ -38,7 +38,7 @@ class FinderTest extends TestCase
 
     public function testIfMethodDoNotExistsAndNullAreReturned(): void
     {
-        $finder = new Finder($this->file, $this->filesystem);
+        $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->method("not_exists");
 
         $this->assertNull($coordinates->getStartLine());
@@ -47,7 +47,7 @@ class FinderTest extends TestCase
 
     public function testIfFindingMethodWillReturnCoordinatesWithManyBracesInOneLine(): void
     {
-        $finder = new Finder($this->file, $this->filesystem);
+        $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->method('many_brances_in_one_line');
 
         $this->assertEquals(66, $coordinates->getStartLine());
@@ -59,7 +59,7 @@ class FinderTest extends TestCase
      */
     public function testIfPropertyWillBeFound($methodName, $startCoordinate, $endCoordinate): void
     {
-        $finder = new Finder($this->file, $this->filesystem);
+        $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->property($methodName);
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());

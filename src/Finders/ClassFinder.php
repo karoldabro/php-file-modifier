@@ -7,7 +7,7 @@ use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use League\Flysystem\FilesystemInterface;
 
-class Finder
+class ClassFinder
 {
     const BYTES = 4096;
 

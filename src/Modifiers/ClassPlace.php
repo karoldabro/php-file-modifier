@@ -19,7 +19,7 @@ class ClassPlace implements PlaceInterface
 
     public function __construct(PhpFileInterface $phpFileInterface, FilesystemInterface $filesystemInterface)
     {
-        $this->finder = new Finder($phpFileInterface, $filesystemInterface);
+        $this->finder = new ClassFinder($phpFileInterface, $filesystemInterface);
     }
 
     public function onLine(int $lineNumber) : int
