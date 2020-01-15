@@ -12,6 +12,7 @@ use Kdabrow\PhpFileModifier\Contracts\PhpMethodInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\PhpFunctionInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpPropertyInterface;
+use Kdabrow\PhpFileModifier\Finders\ClassFinder;
 
 class PhpClass
 {
@@ -53,7 +54,7 @@ class PhpClass
     {
         throw new NotImplementedException();
 
-        $lineNumber = $place(new ClassPlace($this->getContent()));
+        $lineNumber = $place(new ClassPlace(new ClassFinder($this, $this->filesystem)));
 
         new Modifier($this, $phpMethodInterface, $lineNumber);
 

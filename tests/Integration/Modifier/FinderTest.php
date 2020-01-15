@@ -30,7 +30,7 @@ class FinderTest extends TestCase
     public function testIfFindingMethodWillReturnCorrectCoordinates($methodName, $startCoordinate, $endCoordinate): void
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
-        $coordinates = $finder->method($methodName);
+        $coordinates = $finder->function($methodName);
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
         $this->assertEquals($endCoordinate, $coordinates->getEndline());
@@ -39,7 +39,7 @@ class FinderTest extends TestCase
     public function testIfMethodDoNotExistsAndNullAreReturned(): void
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
-        $coordinates = $finder->method("not_exists");
+        $coordinates = $finder->function("not_exists");
 
         $this->assertNull($coordinates->getStartLine());
         $this->assertNull($coordinates->getEndline());
@@ -48,7 +48,7 @@ class FinderTest extends TestCase
     public function testIfFindingMethodWillReturnCoordinatesWithManyBracesInOneLine(): void
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
-        $coordinates = $finder->method('many_brances_in_one_line');
+        $coordinates = $finder->function('many_brances_in_one_line');
 
         $this->assertEquals(66, $coordinates->getStartLine());
         $this->assertEquals(70, $coordinates->getEndline());
@@ -60,7 +60,7 @@ class FinderTest extends TestCase
     public function testIfPropertyWillBeFound($methodName, $startCoordinate, $endCoordinate): void
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
-        $coordinates = $finder->property($methodName);
+        $coordinates = $finder->variable($methodName);
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
         $this->assertEquals($endCoordinate, $coordinates->getEndline());
