@@ -12,6 +12,14 @@ class PhpClassTest extends TestCase
         $factory = new FileSystemFactory();
         $fileSystem = $factory->create('src');
         $end = $fileSystem->readStream('PhpClass.php');
+
+        $this->assertNotEmpty($end);
+    }
+    public function test2()
+    {
+        $factory = new FileSystemFactory();
+        $fileSystem = $factory->create('src');
+        $end = $fileSystem->readStream('PhpClass.php');
         
         $this->assertNotEmpty($end);
     }
