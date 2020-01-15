@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Contracts\Modifier;
+namespace Kdabrow\PhpFileModifier\Contracts\Modifiers;
 
 interface PlaceInterface
 {

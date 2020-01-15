@@ -4,7 +4,7 @@ namespace Kdabrow\PhpFileModifier\Factories;
 
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
-use Kdabrow\PhpFileModifier\Modifier\Modifier;
+use Kdabrow\PhpFileModifier\Modifiers\Modifier;
 
 class ModifierFactory
 {

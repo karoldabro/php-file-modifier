@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Modifier;
+namespace Kdabrow\PhpFileModifier\Modifiers;
 
 class Coordinates
 {

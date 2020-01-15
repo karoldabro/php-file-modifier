@@ -1,8 +1,8 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Modifier;
+namespace Kdabrow\PhpFileModifier\Modifiers;
 
-use Kdabrow\PhpFileModifier\Modifier\Coordinates;
+use Kdabrow\PhpFileModifier\Modifiers\Coordinates;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use League\Flysystem\FilesystemInterface;

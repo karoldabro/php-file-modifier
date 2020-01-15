@@ -2,8 +2,8 @@
 
 namespace Kdabrow\PhpFileModifier\Factories;
 
-use Kdabrow\PhpFileModifier\Contracts\Modifier\PlaceInterface;
-use Kdabrow\PhpFileModifier\Modifier\ClassPlace;
+use Kdabrow\PhpFileModifier\Contracts\Modifiers\PlaceInterface;
+use Kdabrow\PhpFileModifier\Modifiers\ClassPlace;
 
 class PlaceFactory
 {

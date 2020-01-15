@@ -3,8 +3,8 @@
 namespace Kdabrow\PhpFileModifier;
 
 use Closure;
-use Kdabrow\PhpFileModifier\Modifier\Modifier;
-use Kdabrow\PhpFileModifier\Modifier\ClassPlace;
+use Kdabrow\PhpFileModifier\Modifiers\Modifier;
+use Kdabrow\PhpFileModifier\Modifiers\ClassPlace;
 use Kdabrow\PhpFileModifier\Factories\PlaceFactory;
 use Kdabrow\PhpFileModifier\Factories\ModifierFactory;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;

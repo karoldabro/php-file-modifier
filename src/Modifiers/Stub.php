@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Modifier;
+namespace Kdabrow\PhpFileModifier\Modifiers;
 
 use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
 use League\Flysystem\FilesystemInterface;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Modifier;
+namespace Kdabrow\PhpFileModifier\Modifiers;
 
 use League\Flysystem\FilesystemInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
-use Kdabrow\PhpFileModifier\Contracts\Modifier\PlaceInterface;
+use Kdabrow\PhpFileModifier\Contracts\Modifiers\PlaceInterface;
 
 /**
  * This class shows on which line code shoud modified

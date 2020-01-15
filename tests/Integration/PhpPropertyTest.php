@@ -4,7 +4,7 @@ namespace Kdabrow\PhpFileModifier\Tests\Integration;
 
 use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
 use Kdabrow\PhpFileModifier\PhpProperty;
-use Kdabrow\PhpFileModifier\Modifier\Stub;
+use Kdabrow\PhpFileModifier\Modifiers\Stub;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
 
 class PhpPropertyTest extends TestCase
