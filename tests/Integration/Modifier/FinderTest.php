@@ -3,7 +3,7 @@
 namespace Kdabrow\PhpFileModifier\Tests\Integration\Modifier;
 
 use Mockery;
-use Kdabrow\PhpFileModifier\Modifiers\Finder;
+use Kdabrow\PhpFileModifier\Finders\Finder;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
 use Kdabrow\PhpFileModifier\Tests\TestCase;

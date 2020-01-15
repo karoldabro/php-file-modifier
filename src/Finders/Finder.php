@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Modifiers;
+namespace Kdabrow\PhpFileModifier\Finders;
 
 use Kdabrow\PhpFileModifier\Modifiers\Coordinates;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
