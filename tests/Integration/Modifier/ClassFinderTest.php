@@ -66,6 +66,15 @@ class ClassFinderTest extends TestCase
         $this->assertEquals($endCoordinate, $coordinates->getEndline());
     }
 
+    public function testIfClassWillBeFound(): void
+    {
+        $finder = new ClassFinder($this->file, $this->filesystem);
+        $coordinates = $finder->class('FooClass');
+
+        $this->assertEquals(3, $coordinates->getStartLine());
+        $this->assertEquals(120, $coordinates->getEndline());
+    }
+
     public function providerIfFindingMethodWillReturnCorrectCoordinates(): array
     {
         return [
