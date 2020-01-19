@@ -6,6 +6,7 @@ use Mockery;
 use Kdabrow\PhpFileModifier\Finders\ClassFinder;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
 use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
+use Kdabrow\PhpFileModifier\General\FileLineIterator;
 use Kdabrow\PhpFileModifier\Tests\TestCase;
 
 class ClassFinderTest extends TestCase
@@ -13,6 +14,11 @@ class ClassFinderTest extends TestCase
     private $file;
 
     private $filesystem;
+
+    /**
+     * @var FileLineIterator
+     */
+    private $fileLineIterator;
 
     public function setUp(): void
     {
@@ -22,6 +28,8 @@ class ClassFinderTest extends TestCase
 
         $this->filesystem = (new FileSystemFactory())
             ->create('tests/resources/filesystem');
+
+        $this->fileLineIterator = new FileLineIterator($this->file, $this->filesystem);
     }
 
     /**
@@ -29,8 +37,13 @@ class ClassFinderTest extends TestCase
      */
     public function testIfFindingMethodWillReturnCorrectCoordinates($methodName, $startCoordinate, $endCoordinate): void
     {
-        $finder = new ClassFinder($this->file, $this->filesystem);
-        $coordinates = $finder->method($methodName);
+        $finder = new ClassFinder();
+        $finder->method($methodName);
+
+        $this->fileLineIterator->setFinder($finder);
+        $this->fileLineIterator->iterate();
+
+        $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
         $this->assertEquals($endCoordinate, $coordinates->getEndline());
@@ -41,6 +54,11 @@ class ClassFinderTest extends TestCase
         $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->method("not_exists");
 
+        $this->fileLineIterator->setFinder($finder);
+        $this->fileLineIterator->iterate();
+
+        $coordinates = $finder->getMethod()->getCoordinates();
+
         $this->assertNull($coordinates->getStartLine());
         $this->assertNull($coordinates->getEndline());
     }
@@ -49,6 +67,11 @@ class ClassFinderTest extends TestCase
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->method('many_brances_in_one_line');
+
+        $this->fileLineIterator->setFinder($finder);
+        $this->fileLineIterator->iterate();
+
+        $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals(66, $coordinates->getStartLine());
         $this->assertEquals(70, $coordinates->getEndline());
@@ -62,6 +85,11 @@ class ClassFinderTest extends TestCase
         $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->property($methodName);
 
+        $this->fileLineIterator->setFinder($finder);
+        $this->fileLineIterator->iterate();
+
+        $coordinates = $finder->getMethod()->getCoordinates();
+
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
         $this->assertEquals($endCoordinate, $coordinates->getEndline());
     }
@@ -70,6 +98,11 @@ class ClassFinderTest extends TestCase
     {
         $finder = new ClassFinder($this->file, $this->filesystem);
         $coordinates = $finder->class('FooClass');
+
+        $this->fileLineIterator->setFinder($finder);
+        $this->fileLineIterator->iterate();
+
+        $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals(3, $coordinates->getStartLine());
         $this->assertEquals(120, $coordinates->getEndline());

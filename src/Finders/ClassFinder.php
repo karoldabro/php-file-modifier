@@ -2,28 +2,23 @@
 
 namespace Kdabrow\PhpFileModifier\Finders;
 
-use Kdabrow\PhpFileModifier\Modifiers\Coordinates;
+use Kdabrow\PhpFileModifier\Finders\Methods\MayHaveBracesMethod;
+use Kdabrow\PhpFileModifier\Finders\Methods\MustHaveBracesMethod;
 
 class ClassFinder extends Finder
 {
-    public function class(string $name): Coordinates
+    public function class(string $name): ClassFinder
     {
-        $stream = $this->getStream();
-
-        return $this->mustHaveBraces($stream, "/class( +)" . $name . "/");
+        return $this->setMethod(new MustHaveBracesMethod("/class( +)" . $name . "/"));
     }
 
-    public function property(string $name): Coordinates
+    public function property(string $name): ClassFinder
     {
-        $stream = $this->getStream();
-
-        return $this->mayHaveBraces($stream, "/(public|private|protected)( +)\\$" . $name . "( *)=/");
+        return $this->setMethod(new MayHaveBracesMethod("/(public|private|protected)( +)\\$" . $name . "( *)=/"));
     }
 
-    public function method(string $name): Coordinates
+    public function method(string $name): ClassFinder
     {
-        $stream = $this->getStream();
-
-        return $this->mustHaveBraces($stream, "/(public|private|protected)( +)function( +)" . $name . "( *)\(.*\)/");
+        return $this->setMethod(new MustHaveBracesMethod("/(public|private|protected)( +)function( +)" . $name . "( *)\(.*\)/"));
     }
 }
