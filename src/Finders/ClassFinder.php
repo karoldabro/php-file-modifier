@@ -4,9 +4,8 @@ namespace Kdabrow\PhpFileModifier\Finders;
 
 use Kdabrow\PhpFileModifier\Modifiers\Coordinates;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
-use Kdabrow\PhpFileModifier\Contracts\Finders\FinderInterface;
 
-class ClassFinder extends Finder implements FinderInterface
+class ClassFinder extends Finder
 {
     public function wrapper(string $name) : Coordinates
     {
