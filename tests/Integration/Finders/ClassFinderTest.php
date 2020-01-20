@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\PhpFileModifier\Tests\Integration\Modifier;
+namespace Kdabrow\PhpFileModifier\Tests\Integration\Finders;
 
 use Mockery;
 use Kdabrow\PhpFileModifier\Finders\ClassFinder;
