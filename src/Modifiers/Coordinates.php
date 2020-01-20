@@ -16,12 +16,12 @@ class Coordinates
      *
      * @var int|null
      */
-    private $endline;
+    private $endLine;
 
-    public function __construct(int $startLine = null, int $endline = null)
+    public function __construct(int $startLine = null, int $endLine = null)
     {
         $this->startLine = $startLine;
-        $this->endline = $endline;
+        $this->endLine = $endLine;
     }
 
     /**
@@ -29,7 +29,7 @@ class Coordinates
      *
      * @return int|null
      */
-    public function getStartLine() : ?int
+    public function getStartLine(): ?int
     {
         return $this->startLine;
     }
@@ -53,21 +53,21 @@ class Coordinates
      *
      * @return int|null
      */
-    public function getEndline() : ?int
+    public function getEndLine(): ?int
     {
-        return $this->endline;
+        return $this->endLine;
     }
 
     /**
      * Set line number in file where something ends
      *
-     * @param int|null $endline Line number in file where something ends
+     * @param int|null $endLine Line number in file where something ends
      *
      * @return self
      */
-    public function setEndline(?int $endline)
+    public function setEndLine(?int $endLine)
     {
-        $this->endline = $endline;
+        $this->endLine = $endLine;
 
         return $this;
     }

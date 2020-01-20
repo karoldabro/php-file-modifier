@@ -37,8 +37,10 @@ class MayHaveBracesMethod extends Method implements MethodInterface
             return;
         }
 
-        if (preg_match($this->startPattern, $currentLine)) {
-            $this->startLineNumber = $currentLineNumber;
+        if (is_null($this->startLineNumber)) {
+            if (preg_match($this->startPattern, $currentLine)) {
+                $this->startLineNumber = $currentLineNumber;
+            }
         }
         if (!is_null($this->startLineNumber)) {
             if ($numberOfMatchesStart = preg_match_all($this->openingBraces, $currentLine)) {

@@ -46,7 +46,7 @@ class ClassFinderTest extends TestCase
         $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
-        $this->assertEquals($endCoordinate, $coordinates->getEndline());
+        $this->assertEquals($endCoordinate, $coordinates->getEndLine());
     }
 
     public function testIfMethodDoNotExistsAndNullAreReturned(): void
@@ -60,7 +60,7 @@ class ClassFinderTest extends TestCase
         $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertNull($coordinates->getStartLine());
-        $this->assertNull($coordinates->getEndline());
+        $this->assertNull($coordinates->getEndLine());
     }
 
     public function testIfFindingMethodWillReturnCoordinatesWithManyBracesInOneLine(): void
@@ -74,7 +74,7 @@ class ClassFinderTest extends TestCase
         $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals(66, $coordinates->getStartLine());
-        $this->assertEquals(70, $coordinates->getEndline());
+        $this->assertEquals(70, $coordinates->getEndLine());
     }
 
     /**
@@ -91,7 +91,7 @@ class ClassFinderTest extends TestCase
         $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals($startCoordinate, $coordinates->getStartLine());
-        $this->assertEquals($endCoordinate, $coordinates->getEndline());
+        $this->assertEquals($endCoordinate, $coordinates->getEndLine());
     }
 
     public function testIfClassWillBeFound(): void
@@ -105,7 +105,7 @@ class ClassFinderTest extends TestCase
         $coordinates = $finder->getMethod()->getCoordinates();
 
         $this->assertEquals(3, $coordinates->getStartLine());
-        $this->assertEquals(120, $coordinates->getEndline());
+        $this->assertEquals(120, $coordinates->getEndLine());
     }
 
     public function providerIfFindingMethodWillReturnCorrectCoordinates(): array
