@@ -10,4 +10,9 @@ class Method
     {
         $this->isDone = true;
     }
+
+    public function isDone(): bool
+    {
+        return $this->isDone;
+    }
 }

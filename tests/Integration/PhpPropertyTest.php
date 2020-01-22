@@ -10,12 +10,12 @@ use Kdabrow\PhpFileModifier\Tests\TestCase;
 class PhpPropertyTest extends TestCase
 {
     private $stub;
-    
-    public function setUp() : void
+
+    public function setUp(): void
     {
         $filesystemFactory = new FileSystemFactory();
 
-        $this->stub = new Stub($filesystemFactory->create());
+        $this->stub = new Stub($filesystemFactory->create('resources/stubs'));
     }
 
     public function testIfPropertyIsGeneratedWithDefaultAccess()
@@ -36,7 +36,7 @@ class PhpPropertyTest extends TestCase
         $property->setValue($value);
         $property->setAccess($access);
 
-        $expected = $access.' $'.$name.' = '.$value;
+        $expected = $access . ' $' . $name . ' = ' . $value;
 
         $this->assertEquals($expected, $this->stub->toString($property));
     }

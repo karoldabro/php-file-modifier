@@ -6,7 +6,9 @@ use Kdabrow\PhpFileModifier\Modifiers\Coordinates;
 
 interface MethodInterface
 {
-    public function handleLine(string $currentLine, int $currentLineNumber): void;
+    public function lineIsMatched(string $currentLine, int $currentLineNumber): bool;
 
     public function getCoordinates(): Coordinates;
+
+    public function isDone(): bool;
 }

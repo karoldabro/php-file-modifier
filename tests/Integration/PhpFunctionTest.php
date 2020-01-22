@@ -10,12 +10,12 @@ use Kdabrow\PhpFileModifier\Tests\TestCase;
 class PhpFunctionTest extends TestCase
 {
     private $stub;
-    
-    public function setUp() : void
+
+    public function setUp(): void
     {
         $filesystemFactory = new FileSystemFactory();
 
-        $this->stub = new Stub($filesystemFactory->create());
+        $this->stub = new Stub($filesystemFactory->create('resources/stubs'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PhpFunctionTest extends TestCase
     {
         $function = new PhpFunction($name);
 
-        $expected = 'function '.$name.'() 
+        $expected = 'function ' . $name . '() 
 {
     
 }';

@@ -41,7 +41,9 @@ class FileLineIterator
             $lineNumber++;
 
             foreach ($this->getFinders() as $finder) {
-                $finder->getMethod()->handleLine($lineContent, $lineNumber);
+                if ($finder->getMethod()->lineIsMatched($lineContent, $lineNumber)) {
+                    $finder->addLineToFound($lineContent);
+                }
             }
         }
     }

@@ -61,7 +61,7 @@ class MustHaveBracesMethodTest extends TestCase
     {
         foreach (\preg_split("/((\r?\n)|(\r\n?))/", $this->text) as $currentLineNumber => $currentLine) {
             $currentLineNumber++;
-            $methodInterface->handleLine($currentLine, $currentLineNumber);
+            $methodInterface->lineIsMatched($currentLine, $currentLineNumber);
         }
     }
 }

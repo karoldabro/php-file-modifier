@@ -31,10 +31,10 @@ class MayHaveBracesMethod extends Method implements MethodInterface
         $this->endingBraces = $endingBraces;
     }
 
-    public function handleLine(string $currentLine, int $currentLineNumber): void
+    public function lineIsMatched(string $currentLine, int $currentLineNumber): bool
     {
         if ($this->isDone) {
-            return;
+            return false;
         }
 
         if (is_null($this->startLineNumber)) {
@@ -66,7 +66,11 @@ class MayHaveBracesMethod extends Method implements MethodInterface
                 $this->endLineNumber = $currentLineNumber;
                 $this->setIsDone();
             }
+
+            return true;
         }
+
+        return false;
     }
 
     public function getCoordinates(): Coordinates

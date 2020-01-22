@@ -9,6 +9,8 @@ class Finder implements FinderInterface
 {
     private $method;
 
+    private $found = '';
+
     public function setMethod(MethodInterface $methodInterface): FinderInterface
     {
         $this->method = $methodInterface;
@@ -19,5 +21,24 @@ class Finder implements FinderInterface
     public function getMethod(): MethodInterface
     {
         return $this->method;
+    }
+
+    public function getFound(): string
+    {
+        return $this->found;
+    }
+
+    public function setFound(string $found)
+    {
+        $this->found = $found;
+
+        return $this;
+    }
+
+    public function addLineToFound(string $line)
+    {
+        $this->found .= $line;
+
+        return $this;
     }
 }

@@ -10,12 +10,12 @@ use Kdabrow\PhpFileModifier\Tests\TestCase;
 class PhpVariableTest extends TestCase
 {
     private $stub;
-    
-    public function setUp() : void
+
+    public function setUp(): void
     {
         $filesystemFactory = new FileSystemFactory();
 
-        $this->stub = new Stub($filesystemFactory->create());
+        $this->stub = new Stub($filesystemFactory->create('resources/stubs'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PhpVariableTest extends TestCase
         $variable = new PhpVariable($name);
         $variable->setValue($value);
 
-        $expected = '$'.$name.' = '.$value;
+        $expected = '$' . $name . ' = ' . $value;
 
         $this->assertEquals($expected, $this->stub->toString($variable));
     }
