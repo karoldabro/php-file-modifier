@@ -53,4 +53,31 @@ class FileLineIteratorTest extends TestCase
         $this->assertEquals(74, $coordinates2->getStartLine());
         $this->assertEquals(74, $coordinates2->getEndLine());
     }
+
+    public function testIfFinderContainsSearchedContent(): void
+    {
+        $finder = (new ClassFinder())->method("method4");
+
+        $this->fileLineIterator->setFinders([
+            $finder,
+        ]);
+        $this->fileLineIterator->iterate();
+
+        $this->assertEquals(
+            '    protected function method4() 
+    {
+        if () {
+            if () {
+                if () {
+                    while() {
+
+                    }
+                }
+            }
+        }
+    }
+',
+            $finder->getFound()
+        );
+    }
 }

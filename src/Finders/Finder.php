@@ -37,7 +37,7 @@ class Finder implements FinderInterface
 
     public function addLineToFound(string $line)
     {
-        $this->found .= $line;
+        $this->found .= $line . \PHP_EOL;
 
         return $this;
     }
