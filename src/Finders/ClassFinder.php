@@ -7,18 +7,18 @@ use Kdabrow\PhpFileModifier\Finders\Methods\MustHaveBracesMethod;
 
 class ClassFinder extends Finder
 {
-    public function class(string $name): ClassFinder
+    public function class(string $name)
     {
-        return $this->setMethod(new MustHaveBracesMethod("/class( +)" . $name . "/"));
+        $this->setMethod(new MustHaveBracesMethod("/class( +)" . $name . "/"));
     }
 
-    public function property(string $name): ClassFinder
+    public function property(string $name)
     {
-        return $this->setMethod(new MayHaveBracesMethod("/(public|private|protected)( +)\\$" . $name . "( *)=/"));
+        $this->setMethod(new MayHaveBracesMethod("/(public|private|protected)( +)\\$" . $name . "( *)=/"));
     }
 
-    public function method(string $name): ClassFinder
+    public function method(string $name)
     {
-        return $this->setMethod(new MustHaveBracesMethod("/(public|private|protected)( +)function( +)" . $name . "( *)\(.*\)/"));
+        $this->setMethod(new MustHaveBracesMethod("/(public|private|protected)( +)function( +)" . $name . "( *)\(.*\)/"));
     }
 }

@@ -34,8 +34,10 @@ class FileLineIteratorTest extends TestCase
 
     public function testIfManyFindersWillBeDone(): void
     {
-        $finder1 = (new ClassFinder())->method("method2");
-        $finder2 = (new ClassFinder())->property('property2');
+        $finder1 = new ClassFinder();
+        $finder1->method("method2");
+        $finder2 = new ClassFinder();
+        $finder2->property('property2');
 
         $this->fileLineIterator->setFinders([
             $finder1,
@@ -56,7 +58,8 @@ class FileLineIteratorTest extends TestCase
 
     public function testIfFinderContainsSearchedContent(): void
     {
-        $finder = (new ClassFinder())->method("method4");
+        $finder = new ClassFinder();
+        $finder->method("method4");
 
         $this->fileLineIterator->setFinders([
             $finder,
