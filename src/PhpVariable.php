@@ -12,12 +12,12 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
 
     protected $stubFileName = 'variable.stub';
 
-    public function __construct(string $name)
+    public function __construct(string $name = '')
     {
         $this->name = $name;
     }
-    
-    public function getParamsToFillInStub() : array
+
+    public function getParamsToFillInStub(): array
     {
         return [
             'name' => $this->name,
@@ -30,7 +30,7 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -42,7 +42,7 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
      *
      * @return PhpVariableInterface
      */
-    public function setName(string $name) : PhpVariableInterface
+    public function setName(string $name): PhpVariableInterface
     {
         $this->name = $name;
 
@@ -54,7 +54,7 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
      *
      * @return string
      */
-    public function getValue() : string
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -66,7 +66,7 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
      *
      * @return PhpVariableInterface
      */
-    public function setValue(string $value) : PhpVariableInterface
+    public function setValue(string $value): PhpVariableInterface
     {
         $this->value = $value;
 

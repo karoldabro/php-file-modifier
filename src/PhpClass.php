@@ -4,22 +4,16 @@ namespace Kdabrow\PhpFileModifier;
 
 use Closure;
 use Kdabrow\PhpFileModifier\Modifiers\Modifier;
+use Kdabrow\PhpFileModifier\Finders\ClassFinder;
 use Kdabrow\PhpFileModifier\Modifiers\ClassPlace;
-use Kdabrow\PhpFileModifier\Factories\PlaceFactory;
-use Kdabrow\PhpFileModifier\Factories\ModifierFactory;
 use Kdabrow\PhpFileModifier\Contracts\PhpFileInterface;
-use Kdabrow\PhpFileModifier\Contracts\PhpMethodInterface;
 use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\PhpFunctionInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpPropertyInterface;
-use Kdabrow\PhpFileModifier\Factories\FileSystemFactory;
-use Kdabrow\PhpFileModifier\Finders\ClassFinder;
-use Kdabrow\PhpFileModifier\General\FileLineIterator;
+use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
 
-class PhpClass implements PhpFileInterface
+class PhpClass implements PhpBaseContentInterface, PhpFileInterface
 {
-    private $path = '';
-
     private $name = '';
 
     private $methods = [];
@@ -34,26 +28,9 @@ class PhpClass implements PhpFileInterface
 
     private $traits = [];
 
-    public function __construct(string $path)
+    public function __construct(string $name = '')
     {
-        $this->path = $path;
-    }
-
-    public function read(): self
-    {
-        // $methodFinder = (new ClassFinder())->method("[a-zA-Z0-9]+");
-
-        // $fileLineIterator = new FileLineIterator(
-        //     $this,
-        //     (new FileSystemFactory())->create()
-        // );
-
-        // $fileLineIterator->setFinder($methodFinder);
-        // $fileLineIterator->iterateByClone();
-
-        // $this->methods = $fileLineIterator->getFinders();
-
-        return $this;
+        $this->name = $name;
     }
 
     public function addUse(string $className): PhpFileInterface
@@ -107,11 +84,6 @@ class PhpClass implements PhpFileInterface
         throw new NotImplementedException();
 
         return $this;
-    }
-
-    public function getPath(): string
-    {
-        return $this->path;
     }
 
     /**

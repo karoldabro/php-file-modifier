@@ -16,12 +16,12 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
 
     protected $stubFileName = 'function.stub';
 
-    public function __construct(string $name)
+    public function __construct(string $name = '')
     {
         $this->name = $name;
     }
 
-    public function getParamsToFillInStub() : array
+    public function getParamsToFillInStub(): array
     {
         return [
             'name' => $this->name,
@@ -36,7 +36,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -48,7 +48,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return PhpFunctionInterface
      */
-    public function setName(string $name) : PhpFunctionInterface
+    public function setName(string $name): PhpFunctionInterface
     {
         $this->name = $name;
 
@@ -60,7 +60,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return string
      */
-    public function getArguments() : string
+    public function getArguments(): string
     {
         return $this->arguments;
     }
@@ -72,7 +72,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return PhpFunctionInterface
      */
-    public function setArguments(string $arguments) : PhpFunctionInterface
+    public function setArguments(string $arguments): PhpFunctionInterface
     {
         $this->arguments = $arguments;
 
@@ -84,7 +84,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return string
      */
-    public function getReturn() : string
+    public function getReturn(): string
     {
         return $this->return;
     }
@@ -96,9 +96,9 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return PhpFunctionInterface
      */
-    public function setReturn(string $return) : PhpFunctionInterface
+    public function setReturn(string $return): PhpFunctionInterface
     {
-        $this->return = ': '.$return;
+        $this->return = ': ' . $return;
 
         return $this;
     }
@@ -108,7 +108,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return string
      */
-    public function getBody() : string
+    public function getBody(): string
     {
         return $this->body;
     }
@@ -120,7 +120,7 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
      *
      * @return PhpFunctionInterface
      */
-    public function setBody(string $body) : PhpFunctionInterface
+    public function setBody(string $body): PhpFunctionInterface
     {
         $this->body = $body;
 

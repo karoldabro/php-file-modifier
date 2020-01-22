@@ -9,6 +9,8 @@ class Finder implements FinderInterface
 {
     private $method;
 
+    private $phpType;
+
     private $found = '';
 
     public function setMethod(MethodInterface $methodInterface): FinderInterface
@@ -38,6 +40,18 @@ class Finder implements FinderInterface
     public function addLineToFound(string $line)
     {
         $this->found .= $line . \PHP_EOL;
+
+        return $this;
+    }
+
+    public function getPhpType(): string
+    {
+        return $this->phpType;
+    }
+
+    public function setPhpType(string $phpType)
+    {
+        $this->phpType = $phpType;
 
         return $this;
     }
