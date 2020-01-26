@@ -44,4 +44,50 @@ class PhpFunctionTest extends TestCase
 
         $this->assertEquals('function.stub', $function->getStubFileName());
     }
+
+    public function testIfParsingContentSetCorrectValues()
+    {
+        $data = 'function test(string $argument1, $argument2) : bool{
+            if($argument1 == strlen($argument2) {
+                return true;
+            }
+            
+            return false;
+        }';
+
+        $function = new PhpFunction();
+        $function->parse($data);
+
+        $this->assertEquals('test', $function->getName());
+        $this->assertEquals('string $argument1, $argument2', $function->getArguments());
+        $this->assertEquals(': bool', $function->getReturn());
+        $this->assertEquals('if($argument1 == strlen($argument2) {
+            return true;
+        }
+        
+        return false;', $function->getBody());
+    }
+
+    public function testIfParsingIsCorrectWithoutReturnType()
+    {
+        $data = 'function test(string $argument1, $argument2){
+            if($argument1 == strlen($argument2) {
+                return true;
+            }
+            
+            return false;
+        }';
+
+        $function = new PhpFunction();
+        $function->parse($data);
+
+        $this->assertEquals('test', $function->getName());
+        $this->assertEquals('string $argument1, $argument2', $function->getArguments());
+        $this->assertEquals('', $function->getReturn());
+        $this->assertEquals('if($argument1 == strlen($argument2) {
+            return true;
+        }
+        
+        return false;', $function->getBody());
+    }
 }

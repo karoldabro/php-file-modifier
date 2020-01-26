@@ -38,6 +38,13 @@ class PhpClass extends PhpBaseContent implements PhpBaseContentInterface, PhpFil
         return '';
     }
 
+    public function parse(string $content): bool
+    {
+        throw new NotImplementedException();
+
+        return true;
+    }
+
     public function addUse(string $className): PhpFileInterface
     {
         throw new NotImplementedException();

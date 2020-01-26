@@ -9,7 +9,16 @@ interface PhpBaseContentInterface
      *
      * @return string
      */
-    public function getStubFileName() : string;
+    public function getStubFileName(): string;
 
-    public function getParamsToFillInStub() : array;
+    public function getParamsToFillInStub(): array;
+
+    /**
+     * Parse content to fill object properties
+     *
+     * @param string $content
+     *
+     * @return bool
+     */
+    public function parse(string $content): bool;
 }

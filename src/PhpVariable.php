@@ -2,6 +2,7 @@
 
 namespace Kdabrow\PhpFileModifier;
 
+use Kdabrow\PhpFileModifier\Tests\NotImplementedException;
 use Kdabrow\PhpFileModifier\Contracts\PhpVariableInterface;
 
 class PhpVariable extends PhpBaseContent implements PhpVariableInterface
@@ -23,6 +24,13 @@ class PhpVariable extends PhpBaseContent implements PhpVariableInterface
             'name' => $this->name,
             'value' => $this->value,
         ];
+    }
+
+    public function parse(string $content): bool
+    {
+        throw new NotImplementedException();
+
+        return true;
     }
 
     /**

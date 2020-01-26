@@ -3,6 +3,8 @@
 namespace Kdabrow\PhpFileModifier;
 
 use Kdabrow\PhpFileModifier\Contracts\PhpFunctionInterface;
+use Kdabrow\PhpFileModifier\General\Regex;
+use Kdabrow\PhpFileModifier\Regex\PhpFunctionRegex;
 
 class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
 {
@@ -29,6 +31,27 @@ class PhpFunction extends PhpBaseContent implements PhpFunctionInterface
             'return' => $this->return,
             'body' => $this->body,
         ];
+    }
+
+    public function parse(string $content): bool
+    {
+        $this->setName('test');
+        $this->setArguments('string $argument1, $argument2');
+        $this->setBody('if($argument1 == strlen($argument2) {
+            return true;
+        }
+        
+        return false;');
+        $this->parseReturn($content);
+
+        return true;
+    }
+
+    private function parseReturn(string $content)
+    {
+        if ($match = Regex::firstMatch(PhpFunctionRegex::RETURN, $content)) {
+            $this->setReturn(Regex::firstWord($match) ?? '');
+        }
     }
 
     /**

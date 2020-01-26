@@ -16,4 +16,18 @@ class ReaderTest extends TestCase
 
         $this->assertInstanceOf(PhpFileInterface::class, $return);
     }
+
+    /**
+     * test znalezienia klasy
+     * test znalezienia jednej metody
+     * test znalezienia wielu metod
+     */
+    public function testIfMethodIsFound()
+    {
+        $reader = new Reader('tests/resources/filesystem/finderTestOne.testfile');
+
+        $return = $reader->read();
+
+        $this->assertInstanceOf(PhpFileInterface::class, $return);
+    }
 }
