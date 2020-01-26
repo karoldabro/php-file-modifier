@@ -12,7 +12,7 @@ use Kdabrow\PhpFileModifier\Contracts\PhpFunctionInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpPropertyInterface;
 use Kdabrow\PhpFileModifier\Contracts\PhpBaseContentInterface;
 
-class PhpClass implements PhpBaseContentInterface, PhpFileInterface
+class PhpClass extends PhpBaseContent implements PhpBaseContentInterface, PhpFileInterface
 {
     private $name = '';
 
@@ -31,6 +31,11 @@ class PhpClass implements PhpBaseContentInterface, PhpFileInterface
     public function __construct(string $name = '')
     {
         $this->name = $name;
+    }
+
+    public function getPath(): string
+    {
+        return '';
     }
 
     public function addUse(string $className): PhpFileInterface

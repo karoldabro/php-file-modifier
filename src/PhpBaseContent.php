@@ -16,8 +16,13 @@ class PhpBaseContent
      *
      * @return string
      */
-    public function getStubFileName() : string
+    public function getStubFileName(): string
     {
         return $this->stubFileName;
+    }
+
+    public function getParamsToFillInStub(): array
+    {
+        return [];
     }
 }
